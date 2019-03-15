@@ -1,7 +1,7 @@
-import axios from "axios";
-import { AxiosInstance } from "axios";
-import { ErrorHandler } from "@angular/core";
-import { Injectable } from "@angular/core";
+import axios from 'axios';
+import { AxiosInstance } from 'axios';
+import { ErrorHandler } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface Params {
   [key: string]: any;
@@ -19,7 +19,7 @@ export interface ErrorResponse {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ApiClientService {
   private axiosClient: AxiosInstance;
@@ -31,15 +31,15 @@ export class ApiClientService {
     this.axiosClient = axios.create({
       timeout: 3000,
       headers: {
-        "X-Initialized-At": Date.now().toString()
+        'X-Initialized-At': Date.now().toString()
       }
     });
   }
 
   public async get<T>(options: GetOptions): Promise<T> {
     try {
-      var axiosResponse = await this.axiosClient.request<T>({
-        method: "get",
+      const axiosResponse = await this.axiosClient.request<T>({
+        method: 'get',
         url: options.url,
         params: options.params
       });
@@ -54,9 +54,9 @@ export class ApiClientService {
     this.errorHandler.handleError(error);
 
     return {
-      id: "-1",
-      code: "UnknownError",
-      message: "An unexpected error occurred."
+      id: '-1',
+      code: 'UnknownError',
+      message: 'An unexpected error occurred.'
     };
   }
 }
