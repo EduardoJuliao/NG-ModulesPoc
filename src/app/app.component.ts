@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from './app.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'modules';
+
+  constructor(private service: AppService){
+
+  }
+
+  ngOnInit() { 
+    this.service.getTodo()
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  
 }
